@@ -6,7 +6,7 @@
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 02:27:04 by mpapin            #+#    #+#             */
-/*   Updated: 2025/10/30 03:24:56 by mpapin           ###   ########.fr       */
+/*   Updated: 2025/10/30 04:00:27 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void ScalarConverter::convert(const std::string& number) {
     if (isChar(number))
         convertChar(number);
-    if (isInt(number))
+    else if (isInt(number))
         convertInt(number);
-    if (isFloat(number))
+    else if (isFloat(number))
         convertFloat(number);
-    if (isDouble(number))
+    else if (isDouble(number))
         convertDouble(number);
+    else
+        std::cout << "Invalid input" << std::endl;
 }
 
 bool ScalarConverter::isChar(const std::string& number) {
@@ -93,4 +95,106 @@ bool ScalarConverter::isDouble(const std::string& number) {
         i++;
     }
     return digit && point;
+}
+
+double ScalarConverter::parse(const std::string& number) {
+    if (number == "nanf" || number == "nan")
+        return std::numeric_limits<double>::quiet_NaN();
+    if (number == "+inff" || number == "+inf")
+        return std::numeric_limits<double>::infinity();
+    if (number == "-inff" || number == "-inf")
+        return -std::numeric_limits<double>::infinity();
+    
+    char* end;
+    return strtod(number.c_str(), &end);
+}
+
+void ScalarConverter::printChar(double value) {
+    if (std::isnan(value) || std::isinf(value))
+        std::cout << "char: impossible" << std::endl;
+    else if (value < 0 || value > 127 || value != static_cast<int>(value))
+        std::cout << "char: impossible" << std::endl;
+    else if (!isprint(static_cast<int>(value)))
+        std::cout << "char: Non displayable" << std::endl;
+    else
+        std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+}
+
+void ScalarConverter::printInt(double value) {
+    if (std::isnan(value) || std::isinf(value))
+        std::cout << "int: impossible" << std::endl;
+    else if (value < INT_MIN || value > INT_MAX)
+        std::cout << "int: impossible" << std::endl;
+    else if (value != static_cast<int>(value))
+        std::cout << "int: impossible" << std::endl;
+    else
+        std::cout << "int: " << static_cast<int>(value) << std::endl;
+}
+
+void ScalarConverter::printFloat(double value) {
+    float f = static_cast<float>(value);
+    
+    if (std::isnan(f))
+        std::cout << "float: nanf" << std::endl;
+    else if (std::isinf(f)) {
+        if (f > 0)
+            std::cout << "float: +inff" << std::endl;
+        else
+            std::cout << "float: -inff" << std::endl;
+    }
+    else {
+        std::cout << std::fixed << std::setprecision(1);
+        std::cout << "float: " << f << "f" << std::endl;
+    }
+}
+
+void ScalarConverter::printDouble(double value) {
+    if (std::isnan(value))
+        std::cout << "double: nan" << std::endl;
+    else if (std::isinf(value)) {
+        if (value > 0)
+            std::cout << "double: +inf" << std::endl;
+        else
+            std::cout << "double: -inf" << std::endl;
+    }
+    else {
+        std::cout << std::fixed << std::setprecision(1);
+        std::cout << "double: " << value << std::endl;
+    }
+}
+
+void ScalarConverter::convertChar(const std::string& number) {
+    double value = static_cast<double>(number[1]);
+    
+    std::cout << "char: '" << number[1] << "'" << std::endl;
+    printInt(value);
+    printFloat(value);
+    printDouble(value);
+}
+
+void ScalarConverter::convertInt(const std::string& number) {
+    double value = parse(number);
+    
+    printChar(value);
+    printInt(value);
+    printFloat(value);
+    printDouble(value);
+}
+
+void ScalarConverter::convertFloat(const std::string& number) {
+    double value = parse(number);
+    
+    printChar(value);
+    printInt(value);
+    printFloat(value);
+    printDouble(value);
+}
+
+void ScalarConverter::convertDouble(const std::string& number) {
+    double value = parse(number);
+    
+    printChar(value);
+    printInt(value);
+    printFloat(value);
+    printDouble(value);
 }
