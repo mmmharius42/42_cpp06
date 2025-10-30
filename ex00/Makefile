@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes
 SRCDIR = src
 OBJDIR = obj
 
-SRCS = main.cpp ScalarConverter.cpp ScalarConverter.hpp
+SRCS = main.cpp ScalarConverter.cpp
 
 OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.o)))
 
