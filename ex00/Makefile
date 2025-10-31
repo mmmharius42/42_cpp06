@@ -1,38 +1,31 @@
 NAME = convert
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes
-SRCDIR = src
-OBJDIR = obj
+CC = c++
+CCFLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes
+SRC = .
+OBJ = obj
 
-SRCS = main.cpp ScalarConverter.cpp
+SRCS = main.cpp src/ScalarConverter.cpp
+OBJS = $(addprefix $(OBJ)/, $(notdir $(SRCS:.cpp=.o)))
 
-OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.o)))
+all: $(OBJ) $(NAME)
 
-all: $(OBJDIR) $(NAME)
-
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
+$(OBJ):
+	mkdir -p $(OBJ)
 
 $(NAME): $(OBJS)
-	@echo "Linking $(NAME)..."
-	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(NAME) compiled successfully!"
+	$(CC) $(CCFLAGS) $(OBJS) -o $(NAME)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-	@echo "Compiling $<..."
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJ)/%.o: $(SRC)/%.cpp
+	$(CC) $(CCFLAGS) -c $< -o $@
 
-$(OBJDIR)/main.o: main.cpp
-	@echo "Compiling $<..."
-	@$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJ)/%.o: $(SRC)/src/%.cpp
+	$(CC) $(CCFLAGS) -c $< -o $@
 
 clean:
-	@echo "Cleaning object files..."
-	@rm -rf $(OBJDIR)
+	rm -rf $(OBJ)
 
 fclean: clean
-	@echo "Cleaning executable..."
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
