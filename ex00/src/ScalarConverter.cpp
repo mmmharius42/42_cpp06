@@ -6,7 +6,7 @@
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 02:27:04 by mpapin            #+#    #+#             */
-/*   Updated: 2025/10/30 04:00:27 by mpapin           ###   ########.fr       */
+/*   Updated: 2025/11/06 03:35:42 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,8 @@ void ScalarConverter::printChar(double value) {
 void ScalarConverter::printInt(double value) {
     if (std::isnan(value) || std::isinf(value))
         std::cout << "int: impossible" << std::endl;
-    else if (value < INT_MIN || value > INT_MAX)
-        std::cout << "int: impossible" << std::endl;
-    else if (value != static_cast<int>(value))
+    else if (value < static_cast<double>(INT_MIN) || 
+             value > static_cast<double>(INT_MAX))
         std::cout << "int: impossible" << std::endl;
     else
         std::cout << "int: " << static_cast<int>(value) << std::endl;
@@ -143,8 +142,10 @@ void ScalarConverter::printFloat(double value) {
             std::cout << "float: -inff" << std::endl;
     }
     else {
-        std::cout << std::fixed << std::setprecision(1);
-        std::cout << "float: " << f << "f" << std::endl;
+        std::cout << "float: " << f;
+        if (f == static_cast<int>(f))
+            std::cout << ".0";
+        std::cout << "f" << std::endl;
     }
 }
 
