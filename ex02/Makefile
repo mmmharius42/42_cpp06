@@ -1,10 +1,10 @@
-NAME = Serialization
+NAME = identify
 CC = c++
 CCFLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes
 SRC = .
 OBJ = obj
 
-SRCS = main.cpp src/Serializer.cpp
+SRCS = main.cpp src/Functions.cpp
 OBJS = $(addprefix $(OBJ)/, $(notdir $(SRCS:.cpp=.o)))
 
 all: $(OBJ) $(NAME)

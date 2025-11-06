@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 03:34:55 by mpapin            #+#    #+#             */
-/*   Updated: 2025/11/06 03:35:00 by mpapin           ###   ########.fr       */
+/*   Created: 2025/11/06 02:34:55 by mpapin            #+#    #+#             */
+/*   Updated: 2025/11/06 04:35:07 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define SERIALIZER_HPP
 
 #include <stdint.h>
+#include <string>
 
 struct Data {
     int id;
