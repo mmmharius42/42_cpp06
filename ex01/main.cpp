@@ -6,7 +6,7 @@
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 02:37:25 by mpapin            #+#    #+#             */
-/*   Updated: 2025/11/06 04:35:24 by mpapin           ###   ########.fr       */
+/*   Updated: 2025/11/13 15:02:56 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ int main() {
     std::cout << std::endl;
     
     if (ptr == &data)
-        std::cout << "✓ Success: Pointers are equal!" << std::endl;
+        std::cout << "Pointers equal!" << std::endl;
     else
-        std::cout << "✗ Error: Pointers are different!" << std::endl;
-    
+        std::cout << "Pointers different" << std::endl;
     return 0;
 }

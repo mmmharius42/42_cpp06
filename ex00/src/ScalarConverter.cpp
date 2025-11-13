@@ -6,11 +6,24 @@
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 02:27:04 by mpapin            #+#    #+#             */
-/*   Updated: 2025/11/06 03:35:42 by mpapin           ###   ########.fr       */
+/*   Updated: 2025/11/13 15:18:49 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+
+ScalarConverter::ScalarConverter() {}
+
+ScalarConverter::ScalarConverter(const ScalarConverter& other) {
+    (void)other;
+}
+
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
+    (void)other;
+    return *this;
+}
+
+ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(const std::string& number) {
     if (isChar(number))

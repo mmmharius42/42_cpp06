@@ -4,6 +4,9 @@
         "iostream": "cpp",
         "string": "cpp",
         "new": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "limits": "cpp",
+        "ostream": "cpp",
+        "cstdlib": "cpp"
     }
 }

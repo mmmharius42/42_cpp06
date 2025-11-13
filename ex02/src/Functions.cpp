@@ -6,17 +6,16 @@
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 02:43:26 by mpapin            #+#    #+#             */
-/*   Updated: 2025/11/06 04:36:22 by mpapin           ###   ########.fr       */
+/*   Updated: 2025/11/13 15:54:18 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+
+Base::~Base() {}
 
 Base* generate(void) {
     srand(time(NULL));
